@@ -105,6 +105,15 @@ export default class ReactNativeAD {
   }
 
   /**
+   * Delete credentials from AsyncStorage
+   * @param {string} resource ResourceID
+   */
+  deleteCredentials(resource) {
+    delete this.credentials[resource];
+    return AsyncStorage.removeItem(_getResourceKey(this.config,resource));
+  }
+
+  /**
    * Get access token by given resource id, if no corresponding token exists,
    * returns null.
    * @param  {string} resource The resource ID.
